@@ -14,5 +14,5 @@ class PaymentTransaction(models.Model):
     def _finalize_post_processing(self):
         try:
             super()._finalize_post_processing()
-        except Exception, e:
+        except Exception as e:
             _logger.exception(e)
