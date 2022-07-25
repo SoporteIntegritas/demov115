@@ -16,4 +16,4 @@ class PaymentTransaction(models.Model):
             super()._reconcile_after_done()
         except Exception as e:
             for tx in self.filtered(lambda t: t.operation != 'validation' and not t.payment_id):
-            tx._create_payment()
+                tx._create_payment()
