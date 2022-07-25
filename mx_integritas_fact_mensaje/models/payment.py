@@ -11,8 +11,9 @@ class PaymentTransaction(models.Model):
 
     _inherit = 'payment.transaction'
 
-    def _finalize_post_processing(self):
+    def _reconcile_after_done(self):
         try:
-            super()._finalize_post_processing()
+            super()._reconcile_after_done()
         except Exception as e:
-            _logger.exception(e)
+            for tx in self.filtered(lambda t: t.operation != 'validation' and not t.payment_id):
+            tx._create_payment()
