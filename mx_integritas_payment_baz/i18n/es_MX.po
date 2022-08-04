@@ -1,0 +1,93 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mx_integritas_payment_baz
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-13 17:00+0000\n"
+"PO-Revision-Date: 2021-04-13 17:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mx_integritas_payment_baz
+#: code:addons/mx_integritas_payment_baz/models/payment.py:0
+#, python-format
+msgid "Add your baz account to Odoo"
+msgstr ""
+
+#. module: mx_integritas_payment_baz
+#: model:ir.model.fields,field_description:mx_integritas_payment_baz.field_payment_acquirer__baz_afiliacion
+msgid "Afiliacion"
+msgstr ""
+
+#. module: mx_integritas_payment_baz
+#: model:ir.model.fields,field_description:mx_integritas_payment_baz.field_payment_transaction__baz_txn_status
+msgid "Approval baz"
+msgstr ""
+
+#. module: mx_integritas_payment_baz
+#: code:addons/mx_integritas_payment_baz/models/payment.py:0
+#, python-format
+msgid "BAZ: received data with missing reference (%s)"
+msgstr ""
+
+#. module: mx_integritas_payment_baz
+#: model:payment.acquirer,name:mx_integritas_payment_baz.payment_acquirer_baz
+msgid "Banco Azteca"
+msgstr ""
+
+#. module: mx_integritas_payment_baz
+#: model:ir.model.fields.selection,name:mx_integritas_payment_baz.selection__payment_acquirer__provider__baz
+msgid "Baz"
+msgstr ""
+
+#. module: mx_integritas_payment_baz
+#: model:ir.model.fields,field_description:mx_integritas_payment_baz.field_payment_acquirer__baz_id_terminal
+msgid "Id terminal"
+msgstr ""
+
+#. module: mx_integritas_payment_baz
+#: model:ir.model,name:mx_integritas_payment_baz.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr "Método de pago"
+
+#. module: mx_integritas_payment_baz
+#: model:ir.model,name:mx_integritas_payment_baz.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "Transacción de pago"
+
+#. module: mx_integritas_payment_baz
+#: model:ir.model.fields,field_description:mx_integritas_payment_baz.field_payment_acquirer__provider
+msgid "Provider"
+msgstr "Proveedor"
+
+#. module: mx_integritas_payment_baz
+#: model_terms:payment.acquirer,auth_msg:mx_integritas_payment_baz.payment_acquirer_baz
+msgid "Se ha autorizado su pago."
+msgstr ""
+
+#. module: mx_integritas_payment_baz
+#: model_terms:payment.acquirer,cancel_msg:mx_integritas_payment_baz.payment_acquirer_baz
+msgid "Su pago ha sido cancelado."
+msgstr ""
+
+#. module: mx_integritas_payment_baz
+#: model_terms:payment.acquirer,pending_msg:mx_integritas_payment_baz.payment_acquirer_baz
+msgid "Su pago ha sido procesado con éxito pero está esperando su aprobación."
+msgstr ""
+
+#. module: mx_integritas_payment_baz
+#: model_terms:payment.acquirer,done_msg:mx_integritas_payment_baz.payment_acquirer_baz
+msgid "Su pago ha sido procesado con éxito. ¡Gracias!"
+msgstr ""
+
+#. module: mx_integritas_payment_baz
+#: model:ir.model.fields,field_description:mx_integritas_payment_baz.field_payment_transaction__baz_txn_type
+msgid "Transaction type"
+msgstr ""

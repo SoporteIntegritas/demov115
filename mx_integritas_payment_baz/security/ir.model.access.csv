@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_/mx_integritas_payment_baz_/mx_integritas_payment_baz,/mx_integritas_payment_baz./mx_integritas_payment_baz,model_/mx_integritas_payment_baz_/mx_integritas_payment_baz,base.group_user,1,1,1,1
