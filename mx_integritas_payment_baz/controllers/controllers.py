@@ -57,6 +57,7 @@ class BazController(http.Controller):
             xml = None
             try:
                 xml = PaymentAcquirerBaz.decrypt_with_AES(self_request, xml_encrypt)
+                _logger.warning(xml)
             except:
                 _logger.warning('Error Decrypt')
                 return False
