@@ -77,7 +77,7 @@ class BazController(http.Controller):
             
             if codigo_operacion == "00" and idTransaccion:
                 tx = None
-                tx = request.env['payment.transaction'].sudo().search([('reference', '=', idTransaccion)])
+                tx = request.env['payment.transaction'].sudo().search([('reference', '=', idTransaccion.replace("DEMOLUIS", ""))])
                 if not tx:
                     _logger.warning('received notification for unknown payment reference')
                     payment_validation.write({"baz_txn_status": "received notification for unknown payment reference"})
