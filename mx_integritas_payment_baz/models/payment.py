@@ -325,7 +325,7 @@ class TxBaz(models.Model):
 		tipo_operacion = 'ecommerce3D'
 		amount = str(self.amount)
 		email = self.partner_email
-		item_number = 'DEMOLUIS'+(self.reference)
+		item_number = (self.reference)
 		item_name = f"{self.company_id.name}: {self.reference}"
 		afiliacion = self.acquirer_id.baz_afiliacion
 		id_sesion, id_transaccion = self.acquirer_id.getSession(item_number)
