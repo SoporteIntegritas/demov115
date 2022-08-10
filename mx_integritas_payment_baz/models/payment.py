@@ -44,34 +44,6 @@ class PaymentAcquirerBaz(models.Model):
 		if self.provider != 'baz':
 			return super()._get_default_payment_method_id()
 		return self.env.ref('mx_integritas_payment_baz.payment_method_baz').id
-	
-	def baz_form_generate_values(self, values):
-		base_url = self.get_base_url()
-		baz_tx_values = dict(values)
-		baz_tx_values.update({
-			'cmd': '_xclick',
-			'business': self.baz_afiliacion,
-			'item_name': '%s: %s' % (self.company_id.name, values['reference']),
-			'item_number': values['reference'],
-			'amount': values['amount'],
-			'currency_code': values['currency'] and values['currency'].name or '',
-			'address1': values.get('partner_address'),
-			'city': values.get('partner_city'),
-			'country': values.get('partner_country') and values.get('partner_country').code or '',
-			'state': values.get('partner_state') and (values.get('partner_state').code or values.get('partner_state').name) or '',
-			'email': values.get('partner_email'),
-			'zip_code': values.get('partner_zip'),
-			'first_name': values.get('partner_first_name'),
-			'last_name': values.get('partner_last_name'),
-			'return_url': "/payment/baz/validate",
-			'baz_return': 'https://www.google.com',
-			'notify_url': 'https://www.google.com',
-			'cancel_return': 'https://www.google.com',
-
-			#'handling': '%.2f' % baz_tx_values.pop('fees', 0.0) if self.fees_active else False,
-			#'custom': json.dumps({'return_url': '%s' % baz_tx_values.pop('return_url')}) if baz_tx_values.get('return_url') else False,
-		})
-		return baz_tx_values
 
 	def getSession(self,item_number):
 		
@@ -162,9 +134,9 @@ class TxBaz(models.Model):
 	baz_txn_type = fields.Char('Transaction type')
 	baz_txn_status = fields.Char('Approval baz')
 	@api.model
-	def _get_tx_from_feedback_data(self, provider,data):
+	def _handle_feedback_data(self, provider,data):
 
-		tx = super()._get_tx_from_feedback_data(provider, data)
+		tx = super()._handle_feedback_data(provider, data)
 		if provider != 'baz':
 			return tx
 
@@ -188,6 +160,10 @@ class TxBaz(models.Model):
 		   error_msg = _('BAZ: received data with missing reference (%s)') % (idTransaccion)
 		   _logger.info(error_msg)
 		   raise ValidationError(error_msg)
+		
+		if codigo_operacion == "00" and idTransaccion:
+			_logger.info(descripcion_codigo)
+			raise ValidationError(descripcion_codigo)
 
 		# find tx -> @TDENOTE use txn_id ?
 		txs = self.env['payment.transaction'].search([('reference', '=', idTransaccion)])
