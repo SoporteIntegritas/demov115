@@ -156,6 +156,8 @@ class TxBaz(models.Model):
 
 
 		_logger.warning("Reference "+str(data))
+		_logger.warning("codigo_operacion "+str(codigo_operacion))
+		_logger.warning("idTransaccion "+str(idTransaccion))
 		if not idTransaccion:
 		   error_msg = _('BAZ: received data with missing reference (%s)') % (idTransaccion)
 		   _logger.info(error_msg)
@@ -163,7 +165,7 @@ class TxBaz(models.Model):
 		
 		if codigo_operacion == "00" and idTransaccion:
 			_logger.info(descripcion_codigo)
-			raise ValidationError(descripcion_codigo)
+			#raise ValidationError(descripcion_codigo)
 
 		# find tx -> @TDENOTE use txn_id ?
 		txs = self.env['payment.transaction'].search([('reference', '=', idTransaccion)])
