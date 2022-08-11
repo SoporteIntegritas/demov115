@@ -165,7 +165,11 @@ class TxBaz(models.Model):
 		
 		if codigo_operacion == "00" and idTransaccion:
 			_logger.info(descripcion_codigo)
+			self._set_done()
 			#raise ValidationError(descripcion_codigo)
+		if codigo_operacion != "00" and idTransaccion:
+			_logger.info(descripcion_codigo)
+			self._set_error(descripcion_codigo)
 
 		# find tx -> @TDENOTE use txn_id ?
 		txs = self.env['payment.transaction'].search([('reference', '=', idTransaccion)])
@@ -176,7 +180,8 @@ class TxBaz(models.Model):
 		   else:
 		       error_msg += '; multiple order found'
 		   _logger.info(error_msg)
-		   raise ValidationError(error_msg)
+		   #raise ValidationError(error_msg)
+		   self._set_error(error_msg)
 		return txs[0]
 
 	def _baz_form_get_invalid_parameters(self, data):
