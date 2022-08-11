@@ -162,7 +162,7 @@ class BazController(http.Controller):
             res = self.baz_validate_data(**post)
         except ValidationError:
             _logger.exception('Unable to validate the BAZ payment')
-        return werkzeug.utils.redirect('/payment/process')
+        return request.redirect('/payment/status')
 
         
 
@@ -170,6 +170,6 @@ class BazController(http.Controller):
     def baz_cancel(self, **post):
         """ When the user cancels its Baz payment: GET on this route """
         _logger.warning('Beginning Baz cancel with post data %s', pprint.pformat(post))  # debug
-        return werkzeug.utils.redirect('/payment/process')
+        return request.redirect('/payment/status')
 
    
