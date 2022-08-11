@@ -82,12 +82,12 @@ class BazController(http.Controller):
                     _logger.warning('received notification for unknown payment reference')
                     payment_validation.write({"baz_txn_status": "received notification for unknown payment reference"})
                     #return False
-                res = request.env['payment.transaction'].sudo()._handle_feedback_data('baz',post)
+                res = payment_validation.sudo()._handle_feedback_data('baz',post)
                 payment_validation.write({"baz_txn_status": codigo_operacion+": "+descripcion_codigo}) 
                 #return True
             else :
                 #payment_validation._set_transaction_error(codigo_operacion+": "+descripcion_codigo)
-                res = request.env['payment.transaction'].sudo()._handle_feedback_data('baz',post)  
+                res = payment_validation.sudo()._handle_feedback_data('baz',post)  
                 _logger.exception("BAZ_ERROR: "+ codigo_operacion+"- "+descripcion_codigo)
                 payment_validation.write({"baz_txn_status": codigo_operacion+": "+descripcion_codigo}) 
                 #return False
