@@ -91,7 +91,7 @@ class BazController(http.Controller):
                 _logger.exception("BAZ_ERROR: "+ codigo_operacion+"- "+descripcion_codigo)
                 payment_validation.write({"baz_txn_status": codigo_operacion+": "+descripcion_codigo}) 
                 #return False
-        return request.redirect('/payment/status')
+        return werkzeug.utils.redirect('/payment/process')
 
 
 
@@ -103,7 +103,7 @@ class BazController(http.Controller):
         except ValidationError:
             _logger.exception('Unable to validate the Baz payment')
         #return ''
-        return request.redirect('/payment/status')
+        return werkzeug.utils.redirect('/payment/process')
     
     @http.route('/process_baz', type='http', auth='public', methods=['POST'], csrf=False)
     def baz_process(self, **post):
