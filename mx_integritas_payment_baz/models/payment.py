@@ -71,13 +71,13 @@ class PaymentAcquirerBaz(models.Model):
 			headers = {'SOAPAction': 'add', 'Content-Type': 'text/xml; charset=utf-8'}
 			r =requests.post('http://www.puntoazteca.com.mx/BusinessToBusinessWS/services/PB2B?wsdl',headers=headers,data=xml)
 			xml=r.text
-			print(xml)
+			_logger.info(xml)
 			xml=xml.replace('<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><ns1:getTokenResponse soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://service.btb.com"><getTokenReturn xsi:type="xsd:string">&lt;bancoazteca&gt;&lt;eservices&gt;&lt;response&gt;&lt;data_service&gt;&lt;token&gt;','')
 			token=xml.replace('&lt;/token&gt;&lt;/data_service&gt;&lt;/response&gt;&lt;/eservices&gt;&lt;/bancoazteca&gt;</getTokenReturn></ns1:getTokenResponse></soapenv:Body></soapenv:Envelope>','')
 			#llave=xml
-			print("-----Token--")
-			print(token)
-			print("---")
+			_logger.info("-----Token--")
+			_logger.info(token)
+			_logger.info("---")
 			return token, id_transaccion
 		else:
 			return None, None
